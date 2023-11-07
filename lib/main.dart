@@ -8,14 +8,14 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-);
+  );
   runApp(const ProviderScope(
     child: MyApp(),
   ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends ConsumerWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -51,14 +51,14 @@ class MyHomePage extends ConsumerWidget {
               'You have pushed the button this many times:',
             ),
             Text(
-              '${mainModel.counter}',
+              mainModel.counter.toString(),
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: mainModel.incrementCounter,
+        onPressed: ()  =>  mainModel.createUser(context: context),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
