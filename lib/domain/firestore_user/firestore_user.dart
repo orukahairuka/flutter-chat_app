@@ -9,6 +9,9 @@ abstract class FirestoreUser with _$FirestoreUser {
   const factory FirestoreUser({
     required String userName,
     required String uid,
+    required dynamic createdAt,
+    required dynamic updatedAt,
+
   }) = _FirestoreUser;
 
   factory FirestoreUser.fromJson(Map<String, dynamic> json) =>

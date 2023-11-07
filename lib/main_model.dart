@@ -14,16 +14,15 @@ class MainModel extends ChangeNotifier {
   Future<void> createUser({required BuildContext context}) async {
     counter++;
     final String v4 = uuid.v4();
+    final Timestamp now = Timestamp.now();
     final FirestoreUser firestoreUser =
-        FirestoreUser(uid: v4, userName: 'Alice');
+        FirestoreUser(
+          uid: v4,
+          userName: 'Alice',
+          updatedAt: now,
+          createdAt: now,
+          );
     final Map<String, dynamic> userData = firestoreUser.toJson();
-    final Map<String, dynamic> userData2 = {
-      'userName': 'Aaaae',
-      'uid': v4,
-    };
-
-    final FirestoreUser firestoreUser2 = FirestoreUser.fromJson(userData2);
-    debugPrint(firestoreUser2.userName);
 
     //awaitで順次実行する
     await FirebaseFirestore.instance.collection('users').doc().set(userData);
