@@ -9,9 +9,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const ProviderScope(
-    child: MyApp(),
-  ));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -38,27 +36,40 @@ class MyHomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final MainModel mainModel = ref.watch(mainProvider);
+    //テキストエディティングコントローラー型のインスタンス生成
+    final TextEditingController emailEditingController =
+        TextEditingController();
+    final TextEditingController passwordEditingController =
+        TextEditingController();
 
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              mainModel.counter.toString(),
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+      body: Column(
+        children: [
+          //テキストフォームフィールド(email)
+          TextFormField(
+            keyboardType: TextInputType.emailAddress,
+            controller: emailEditingController,
+            onChanged: (text) => mainModel.email = text,//押されるとされる処理
+          ),
+          //テキストフォームフィールド(pass)
+          TextFormField(
+            keyboardType: TextInputType.visiblePassword,
+            controller: passwordEditingController,
+            onChanged: (text) => mainModel.password = text,//押されるとされる処理
+          ),
+          //nullかnullじゃないかの表示
+          Center(
+            child: mainModel.currentUser == null
+                ? const Text('Nullです')
+                : const Text('Nullじゃないです'),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: ()  =>  mainModel.createUser(context: context),
+        onPressed: () => mainModel.createUser(context: context),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
