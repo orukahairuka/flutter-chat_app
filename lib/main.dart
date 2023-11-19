@@ -52,13 +52,21 @@ class MyHomePage extends ConsumerWidget {
           TextFormField(
             keyboardType: TextInputType.emailAddress,
             controller: emailEditingController,
-            onChanged: (text) => mainModel.email = text,//押されるとされる処理
+            onChanged: (text) => mainModel.email = text, //押されるとされる処理
           ),
           //テキストフォームフィールド(pass)
           TextFormField(
             keyboardType: TextInputType.visiblePassword,
             controller: passwordEditingController,
-            onChanged: (text) => mainModel.password = text,//押されるとされる処理
+            onChanged: (text) => mainModel.password = text, //押されるとされる処理
+            obscureText: mainModel.isObscure,
+            decoration: InputDecoration(
+              //アイコンをタップできるようにする
+              suffix: InkWell(
+                child: const Icon(Icons.visibility_off),
+                onTap: () => mainModel.toggleIsObscure(),
+              ),
+            ),
           ),
           //nullかnullじゃないかの表示
           Center(
