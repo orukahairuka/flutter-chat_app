@@ -1,4 +1,4 @@
-import 'package:chat_app/main_model.dart';
+import 'package:chat_app/models/main_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -37,50 +37,56 @@ class MyHomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final MainModel mainModel = ref.watch(mainProvider);
     //テキストエディティングコントローラー型のインスタンス生成
-    final TextEditingController emailEditingController =
-        TextEditingController(text: mainModel.email);
-    final TextEditingController passwordEditingController =
-        TextEditingController(text: mainModel.password);
+    // final TextEditingController emailEditingController =
+    //     TextEditingController(text: mainModel.email);
+    // final TextEditingController passwordEditingController =
+    //     TextEditingController(text: mainModel.password);
 
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
       ),
-      body: Column(
-        children: [
-          //テキストフォームフィールド(email)
-          TextFormField(
-            keyboardType: TextInputType.emailAddress,
-            controller: emailEditingController,
-            onChanged: (text) => mainModel.email = text, //押されるとされる処理
-          ),
-          //テキストフォームフィールド(pass)
-          TextFormField(
-            keyboardType: TextInputType.visiblePassword,
-            controller: passwordEditingController,
-            onChanged: (text) => mainModel.password = text, //押されるとされる処理
-            obscureText: mainModel.isObscure,
-            decoration: InputDecoration(
-              //アイコンをタップできるようにする
-              suffix: InkWell(
-                child: const Icon(Icons.visibility_off),
-                onTap: () => mainModel.toggleIsObscure(),
-              ),
-            ),
-          ),
-          //nullかnullじゃないかの表示
-          Center(
-            child: mainModel.currentUser == null
-                ? const Text('Nullです')
-                : const Text('Nullじゃないです'),
-          ),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            InkWell(child: Icon(Icons.person),),
+            InkWell(child: Icon(Icons.person),),
+            //テキストフォームフィールド(email)
+            // TextFormField(
+            //   keyboardType: TextInputType.emailAddress,
+            //   controller: emailEditingController,
+            //   onChanged: (text) => mainModel.email = text, //押されるとされる処理
+            // ),
+            // //テキストフォームフィールド(pass)
+            // TextFormField(
+            //   keyboardType: TextInputType.visiblePassword,
+            //   controller: passwordEditingController,
+            //   onChanged: (text) => mainModel.password = text, //押されるとされる処理
+            //   obscureText: mainModel.isObscure,
+            //   decoration: InputDecoration(
+            //     //アイコンをタップできるようにする
+            //     suffix: InkWell(
+            //       child: const Icon(Icons.visibility_off),
+            //       onTap: () => mainModel.toggleIsObscure(),
+            //     ),
+            //   ),
+            // ),
+            // //nullかnullじゃないかの表示
+            // Center(
+            //   child: mainModel.currentUser == null
+            //       ? const Text('Nullです')
+            //       : const Text('Nullじゃないです'),
+            // ),
+            Text('Nullです'),
+          ],
+        ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => mainModel.createUser(context: context),
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () => mainModel.createUser(context: context),
+      //   tooltip: 'Increment',
+      //   child: const Icon(Icons.add),
+      // ),
     );
   }
 }
