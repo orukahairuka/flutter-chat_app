@@ -5,12 +5,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:chat_app/domain/firestore_user/firestore_user.dart';
 
 //viewとmodelの橋渡しする
-final mainProvider = ChangeNotifierProvider(
-  (ref) => MainModel(),
+final signupProvider = ChangeNotifierProvider(
+  (ref) => SignupModel(),
 );
 
 
-class MainModel extends ChangeNotifier {
+class SignupModel extends ChangeNotifier {
   int counter = 0;
   User? currentUser;
   String email = "";
