@@ -8,6 +8,7 @@ part of 'firestore_user.dart';
 
 _$FirestoreUserImpl _$$FirestoreUserImplFromJson(Map<String, dynamic> json) =>
     _$FirestoreUserImpl(
+      email: json['email'] as String,
       userName: json['userName'] as String,
       uid: json['uid'] as String,
       createdAt: json['createdAt'],
@@ -16,6 +17,7 @@ _$FirestoreUserImpl _$$FirestoreUserImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$FirestoreUserImplToJson(_$FirestoreUserImpl instance) =>
     <String, dynamic>{
+      'email': instance.email,
       'userName': instance.userName,
       'uid': instance.uid,
       'createdAt': instance.createdAt,
