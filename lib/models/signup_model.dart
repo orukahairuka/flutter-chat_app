@@ -13,6 +13,7 @@ final signupProvider = ChangeNotifierProvider(
 class SignupModel extends ChangeNotifier {
   int counter = 0;
   User? currentUser;
+  //auth
   String email = "";
   String password = "";
   bool isObscure = true;//textを隠すかどうか
