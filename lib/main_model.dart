@@ -20,10 +20,10 @@ class MainModel extends ChangeNotifier {
 //firebase Firestoreに新しいユーザーを作成する
   Future<void> createFirestoreUser(
       {required BuildContext context, required String uid}) async {
-    counter++;
     final String v4 = uuid.v4();
     final Timestamp now = Timestamp.now();
     final FirestoreUser firestoreUser = FirestoreUser(
+      email: email,
       uid: uid,
       userName: 'Alice',
       updatedAt: now,

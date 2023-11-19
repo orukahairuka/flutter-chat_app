@@ -20,6 +20,7 @@ FirestoreUser _$FirestoreUserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$FirestoreUser {
+  String get email => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
   String get uid => throw _privateConstructorUsedError;
   dynamic get createdAt => throw _privateConstructorUsedError;
@@ -38,7 +39,11 @@ abstract class $FirestoreUserCopyWith<$Res> {
       _$FirestoreUserCopyWithImpl<$Res, FirestoreUser>;
   @useResult
   $Res call(
-      {String userName, String uid, dynamic createdAt, dynamic updatedAt});
+      {String email,
+      String userName,
+      String uid,
+      dynamic createdAt,
+      dynamic updatedAt});
 }
 
 /// @nodoc
@@ -54,12 +59,17 @@ class _$FirestoreUserCopyWithImpl<$Res, $Val extends FirestoreUser>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? email = null,
     Object? userName = null,
     Object? uid = null,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
       userName: null == userName
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
@@ -89,7 +99,11 @@ abstract class _$$FirestoreUserImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String userName, String uid, dynamic createdAt, dynamic updatedAt});
+      {String email,
+      String userName,
+      String uid,
+      dynamic createdAt,
+      dynamic updatedAt});
 }
 
 /// @nodoc
@@ -103,12 +117,17 @@ class __$$FirestoreUserImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? email = null,
     Object? userName = null,
     Object? uid = null,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
     return _then(_$FirestoreUserImpl(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
       userName: null == userName
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
@@ -133,7 +152,8 @@ class __$$FirestoreUserImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$FirestoreUserImpl implements _FirestoreUser {
   const _$FirestoreUserImpl(
-      {required this.userName,
+      {required this.email,
+      required this.userName,
       required this.uid,
       required this.createdAt,
       required this.updatedAt});
@@ -141,6 +161,8 @@ class _$FirestoreUserImpl implements _FirestoreUser {
   factory _$FirestoreUserImpl.fromJson(Map<String, dynamic> json) =>
       _$$FirestoreUserImplFromJson(json);
 
+  @override
+  final String email;
   @override
   final String userName;
   @override
@@ -152,7 +174,7 @@ class _$FirestoreUserImpl implements _FirestoreUser {
 
   @override
   String toString() {
-    return 'FirestoreUser(userName: $userName, uid: $uid, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'FirestoreUser(email: $email, userName: $userName, uid: $uid, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -160,6 +182,7 @@ class _$FirestoreUserImpl implements _FirestoreUser {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FirestoreUserImpl &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.userName, userName) ||
                 other.userName == userName) &&
             (identical(other.uid, uid) || other.uid == uid) &&
@@ -171,6 +194,7 @@ class _$FirestoreUserImpl implements _FirestoreUser {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      email,
       userName,
       uid,
       const DeepCollectionEquality().hash(createdAt),
@@ -192,7 +216,8 @@ class _$FirestoreUserImpl implements _FirestoreUser {
 
 abstract class _FirestoreUser implements FirestoreUser {
   const factory _FirestoreUser(
-      {required final String userName,
+      {required final String email,
+      required final String userName,
       required final String uid,
       required final dynamic createdAt,
       required final dynamic updatedAt}) = _$FirestoreUserImpl;
@@ -200,6 +225,8 @@ abstract class _FirestoreUser implements FirestoreUser {
   factory _FirestoreUser.fromJson(Map<String, dynamic> json) =
       _$FirestoreUserImpl.fromJson;
 
+  @override
+  String get email;
   @override
   String get userName;
   @override

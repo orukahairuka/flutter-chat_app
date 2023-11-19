@@ -38,9 +38,9 @@ class MyHomePage extends ConsumerWidget {
     final MainModel mainModel = ref.watch(mainProvider);
     //テキストエディティングコントローラー型のインスタンス生成
     final TextEditingController emailEditingController =
-        TextEditingController();
+        TextEditingController(text: mainModel.email);
     final TextEditingController passwordEditingController =
-        TextEditingController();
+        TextEditingController(text: mainModel.password);
 
     return Scaffold(
       appBar: AppBar(
